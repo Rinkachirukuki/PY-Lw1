@@ -1,16 +1,38 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import random
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+class NumberGame:
+
+    def __init__(self, minimum=0, maximum=100):
+        self.attemptlist = []
+        self.running = True
+        self.number = random.randint(int(minimum), int(maximum))
+        self.minimum = int(minimum)
+        self.maximum = int(maximum)
+
+    def guesshiddennumber(self, number):
+        if self.number == int(number):
+            print("Вы угадали загаданное число!")
+            print("История ваших попыток:", self.attemptlist)
+            self.running = False
+
+        else:
+            self.attemptlist.append(int(number))
+            if int(number) > self.number:
+                print("Введённое число больше загаданного")
+            else:
+                print("Введённое число меньше загаданного")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+print("Игра: Угадай загаданное число")
+minval = input("Введите минимум: ")
+maxval = input("Введите максимум: ")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+game = NumberGame(minval, maxval)
+
+print("Игра: угадайте число от ", game.minimum, " до ", game.maximum)
+
+while game.running:
+    print("Введите предполагаемое число: ")
+    value = input()
+    game.guesshiddennumber(value)
