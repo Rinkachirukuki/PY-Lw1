@@ -12,7 +12,7 @@ class NumberGame:
 
     def guesshiddennumber(self, number):
         if self.number == int(number):
-            print("Вы угадали загаданное число!")
+            print("Вы угадали загаданное число с ", len(self.attemptlist), " раза!")
             print("История ваших попыток:", self.attemptlist)
             self.running = False
 
